@@ -5,14 +5,22 @@ const hexColors = [
   "#4F9FDF", // Brighter Blue
   "#8B6FFF", // Brighter Indigo
 ];
+let tile = document.createElement("div");
+tile.classList.add("tile");
+
+const themeButton = document.querySelector(".theme-button");
+let body = document.body;
+let theme = "#f0f0f0";
+
+body.style.backgroundColor = theme;
 
 for (let i = 0; i < 3600; i++) {
-  let tile = document.createElement("div");
-  tile.classList.add("tile");
-  container.appendChild(tile);
+  container.appendChild(tile.cloneNode());
 }
 
-const tiles = document.querySelectorAll(".tile").forEach((tile) => {
+let tiles = document.querySelectorAll(".tile");
+
+tiles.forEach((tile) => {
   tile.addEventListener("mouseover", () => {
     const randomColor = hexColors[Math.floor(Math.random() * hexColors.length)];
     tile.classList.add("no-transition");
@@ -21,6 +29,24 @@ const tiles = document.querySelectorAll(".tile").forEach((tile) => {
 
   tile.addEventListener("mouseout", () => {
     tile.classList.remove("no-transition");
-    tile.style.backgroundColor = "#f0f0f0";
+    tile.style.backgroundColor = theme;
   });
+});
+
+themeButton.addEventListener("click", () => {
+  if (theme === "#f0f0f0") {
+    body.style.backgroundColor = "#111";
+    theme = "#111";
+    tiles.forEach((tile) => {
+      tile.classList.add("no-transition");
+      tile.style.backgroundColor = theme;
+    });
+  } else {
+    body.style.backgroundColor = "#f0f0f0";
+    theme = "#f0f0f0";
+    tiles.forEach((tile) => {
+      tile.classList.add("no-transition");
+      tile.style.backgroundColor = theme;
+    });
+  }
 });
