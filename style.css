@@ -1,0 +1,43 @@
+:root {
+  --background-hex: #f0f0f0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background-hex);
+  overflow: hidden;
+  perspective: 4000px;
+}
+
+.container {
+  display: grid;
+  height: 160vh;
+  width: 160vh;
+  grid-template-columns: repeat(60, 1fr);
+  grid-template-rows: repeat(60, 1fr);
+  gap: 1px;
+  transform: rotateX(50deg) rotateY(-5deg) rotateZ(35deg);
+  transform-origin: center;
+  scale: 1.8;
+}
+
+.tile {
+  transition: background-color 1s ease-in-out;
+}
+
+.tile.no-transition {
+  transition: none;
+}
+
+.tile:hover {
+  background-color: #66aa8f;
+}
